@@ -1,0 +1,51 @@
+
+def merge(arr, p, q, r):
+	n1 = q - p + 1
+	n2 = r - q
+
+	# create temp arrays
+	L = [0] * (n1+1)
+	R = [0] * (n2+1)
+
+	# Copy data to temp arrays L[] and R[]
+	for i in range(0, n1):
+		L[i] = arr[p+ i]
+
+	for j in range(0, n2):
+		R[j] = arr[q + 1 + j]
+	i = 0
+	j= 0
+	k = 0
+	for k in range(0,len(arr)):
+		if L[i] <= R[j]:
+			arr[k] = L[i]
+			k = k+1
+			i = i+1
+		else :
+			arr[k] = R[j]
+			k = k+1
+			j = j+1
+	return arr
+			
+	
+    
+    	
+	
+
+
+def mergesort(a,p,r):
+    if p<r:
+        q = (p+r)//2
+        mergesort(a,p,q)
+        mergesort(a,q+1,r)
+        merge(a,p,q,r)
+
+
+
+# driver code 
+a = [15,19,18,14,17,34]
+p = 1
+r = len(a)
+
+mergesort(a,p,r)
+
